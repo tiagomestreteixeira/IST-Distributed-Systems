@@ -1,374 +1,150 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+[Labs SD](../index.html) >
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" >
-    <link rel="stylesheet" type="text/css" href="labs-sd.css">
+# [Original Instructions](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/02-tools/index.html) >
 
- 
-    <title>Ferramentas</title>
-</head>
+# Ferramentas
 
+## Objectivos da semana
 
+*   Usar o Maven para compilar projectos Java
+*   Usar o Eclipse para programar e depurar projectos Java
+*   Usar _sockets_ para transferir dados entre cliente e servidor
 
-    <p>
-        <a href="../index.html">Labs SD</a> &gt;
-    </p>
+## Java
 
-    <h1> <a href="http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/02-tools/index.html">Original Instructions</a> &gt;
-    <h1>Ferramentas</h1>
+O Java Developer Kit (JDK) é um conjunto de ferramentas para programação na linguagem Java.  
+As mais importantes são o `javac` que compila os programas e o `java` que lança as aplicações.
 
+`javac` e `java` são suficientes para construir pequenos programas, mas para programas de maior dimensão, é muito útil ter:
 
+*   Uma ferramenta que dê suporte a todas as tarefas de forma integrada, incluíndo a gestão de dependências - **Maven**;
+*   Um ambiente que apoie o programador em todas as tarefas - **Eclipse**;
+*   Bibliotecas para sistematizar os testes - **JUnit** - e para simular objectos durante os testes - **JMockit**.
 
-    <h2>Objectivos da semana</h2>
-    <ul>
-        <li>Usar o Maven para compilar projectos Java</li>
-        <li>Usar o Eclipse para programar e depurar projectos Java</li>
-        <li>Usar <i>sockets</i> para transferir dados entre cliente e servidor</li>
-    </ul>
-
-<h2>Java</h2>
-
-<p>
-O Java Developer Kit (JDK) é um conjunto de ferramentas para
-programação na linguagem Java.<br />
-As mais importantes são 
-o <code>javac</code> que compila os programas e 
-o <code>java</code> que lança as aplicações.
-</p>
-<p>
-<code>javac</code> e <code>java</code> são suficientes para construir pequenos programas,
-mas para programas de maior dimensão, 
-é muito útil ter:
-</p>
-<ul>
-    <li>
-    Uma ferramenta que dê suporte a todas as tarefas de forma integrada,
-    incluíndo a gestão de dependências - <b>Maven</b>;
-    </li>
-    <li>
-    Um ambiente que apoie o programador em todas as tarefas - <b>Eclipse</b>;
-    </li>
-    <li>
-    Bibliotecas para sistematizar os testes - <b>JUnit</b> - e
-    para simular objectos durante os testes - <b>JMockit</b>.
-    </li>
-</ul>
-<p>
 A tabela seguinte resume as utilizações mais comuns do JDK, Maven, e Eclipse:
-</p>
-<ul>
-    <li>
-    <a href="java-tools-ref-card.pdf">Java tools reference card</a>
-    <img src="../_img/pdf.png" alt="PDF" >
-    </li>
-</ul>    
 
-<p>&nbsp;</p>
+*   [Java tools reference card](java-tools-ref-card.pdf) ![PDF](../_img/pdf.png)
 
-<h2>Maven</h2>
-<p>
-A ferramenta Maven é, talvez,
-a mais importante logo a seguir ao próprio JDK
-(sim, é mais importante que o Eclipse).
-A utilização do Eclipse é opcional,
-mas o Maven é considerado obrigatório.
-</p>
-<p>
-O Maven desempenha o papel muito importante de 
-explicitar dependências de outros programas e
-de automatizar toda a construção.
-Todos os programas devem ter a configuração Maven 
-- <b>pom.xml</b> -
-para que possam ser (re)construídos de forma repetível.
-</p>
-<ul>
-    <li><a href="maven/index.html">Introdução ao Maven</a></li>
-</ul>
-<ul>
-    <li>
-        <a href="java-app.zip">Exemplo de aplicação Java simples
-        <img src="../_img/zip.png" alt="ZIP" ></a>
-        - utiliza o Maven para compilar e executar
-    </li>
-    <ul>
-        <li>
-        Estudar o código fonte e o ficheiro <code>pom.xml</code>.
-        </li>
-        <li>
-        Compilar e executar o programa,
-        seguindo as instruções no ficheiro <code>readme.txt</code>.<br/>
-        Experimente através da linha de comando <code>mvn ...</code>
-        </li>
-    </ul>
-</ul>
+## Maven
 
-<p>&nbsp;</p>
+A ferramenta Maven é, talvez, a mais importante logo a seguir ao próprio JDK (sim, é mais importante que o Eclipse). A utilização do Eclipse é opcional, mas o Maven é considerado obrigatório.
 
-<h2>Eclipse</h2>
-<p>
-O Eclipse pode ser configurado por cima do JDK (Eclipse/JDK),
-ou então por cima também do Maven (Eclipse/Maven/JDK).
-</p>
-<ul>
-    <li><a href="eclipse/maven/index.html">Maven no Eclipse</a></li>
-    <li><a href="http://www.slideshare.net/MiguelLPardal/eclipse-workshop-presentation">Dicas de utilização do Eclipse</a></li>
-</ul>
-<ul>
-    <li>
-    Voltar ao <a href="java-app.zip">exemplo de aplicação Java simples</a>:
-    </li>
-    <ul>
-        <li>
-        Configurar o projecto no Eclipse,
-        seguindo as indicações no ficheiro <code>readme.txt</code>.
-        </li>
-        <li>
-        Experimente executar através da linha de comando <code>mvn ...</code> e
-        executar através do Eclipse (opção "run").<br/>
-        </li>
-        <li>
-        Experimente também executar através do Maven dentro do Eclipse
-        (m2eclipse): "Run As", "Maven Build"
-        </li>
-    </ul>
-    <li>
-    Experimente as funcionalidades de depuração:
-    </li>
-    <ul>
-        <li>Criar um <i>breakpoint</i> no programa e
-        fazer <i>debug</i>.</li>
-        <li>Alterar os argumentos do programa e
-        inspeccionar as variáveis durante a execução.</li>
-    </ul>
-</ul>
+O Maven desempenha o papel muito importante de explicitar dependências de outros programas e de automatizar toda a construção. Todos os programas devem ter a configuração Maven - **pom.xml** - para que possam ser (re)construídos de forma repetível.
 
+*   [Introdução ao Maven](maven/index.html)
 
+*   [Exemplo de aplicação Java simples ![ZIP](../_img/zip.png)](java-app.zip) - utiliza o Maven para compilar e executar
 
+*   Estudar o código fonte e o ficheiro `pom.xml`.
+*   Compilar e executar o programa, seguindo as instruções no ficheiro `readme.txt`.  
+    Experimente através da linha de comando `mvn ...`
 
-<p>&nbsp;</p>
+## Eclipse
 
+O Eclipse pode ser configurado por cima do JDK (Eclipse/JDK), ou então por cima também do Maven (Eclipse/Maven/JDK).
 
-<h2>Sockets</h2>
+*   [Maven no Eclipse](eclipse/maven/index.html)
+*   [Dicas de utilização do Eclipse](http://www.slideshare.net/MiguelLPardal/eclipse-workshop-presentation)
 
-<p>
-Um <i>socket</i> é uma extremidade de uma ligação através de uma rede de computadores.
-Atualmente, 
-a comunicação entre computadores faz-se quase sempre com IP (Internet Protocol).
-Os <i>sockets</i> mais comuns usam TCP (Transmission Control Protocol),
-que estabelecem uma ligação entre cliente e servidor.
-Um endereço de <i>socket</i> é composto por um endereço IP e 
-por um número de porto.
-</p>
-<p>
-<img height="70" src="connection-27383_960_720.png" />
+*   Voltar ao [exemplo de aplicação Java simples](java-app.zip):
 
-<p>
-O Java disponibiliza uma biblioteca de <i>sockets</i> que 
-está disponível no pacote <code>java.net</code>.
-O exemplo seguinte 
-- servidor e cliente -
-ilustra a comunicação entre dois programas usando esta biblioteca.
-</p>
-<ul>
-    <li>
-        <a href="socket-server.zip">Servidor de Sockets TCP/IP
-        <img src="../_img/zip.png" alt="ZIP" ></a>
-        - transfer&ecirc;ncia de texto com sockets TCP/IP
-    </li>
-    <li>
-        <a href="socket-client.zip">Cliente de Sockets TCP/IP
-        <img src="../_img/zip.png" alt="ZIP" ></a>
-    </li>
-</ul>
+*   Configurar o projecto no Eclipse, seguindo as indicações no ficheiro `readme.txt`.
+*   Experimente executar através da linha de comando `mvn ...` e executar através do Eclipse (opção "run").  
 
-<p>
-Os <i>sockets</i> estão na base da programação da comunicação na World Wide Web.
-O porto 80 é reservado para comunicação com o HTTP
-(HyperText Transfer Protocol).
-</p>
-<ul>
-    <li><a href="www/index.html">(Breve) introdução à World Wide Web</a></li>
-    <li>Consultar Seção 1.6 do livro da cadeira e
-    a apresentação das teóricas sobre World Wide Web e Sockets</li>
-</ul>
+*   Experimente também executar através do Maven dentro do Eclipse (m2eclipse): "Run As", "Maven Build"
 
-<p>&nbsp;</p>
+*   Experimente as funcionalidades de depuração:
 
-<h3>Exercício a resolver até ao fim da aula</h3>
+*   Criar um _breakpoint_ no programa e fazer _debug_.
+*   Alterar os argumentos do programa e inspeccionar as variáveis durante a execução.
 
-<ol>
-    <li>Obter o exemplo de <b>sockets TCP/IP</b>.<br />
-    Neste caso temos dois programas que colaboram entre si.</li>
-    <ol type="a">
-        <li>
-        Configurar os projectos no Eclipse
-        </li>
-        <li>
-        Estudar o código fonte e
-        os ficheiros <code>pom.xml</code> do servidor e do cliente.
-        </li>
-        <li>
-        Compilar e executar o servidor e cliente,
-        seguindo as instruções no ficheiro <code>readme.txt</code>
-        </li>
-    </ol>
-</ol>
+## Sockets
 
-<p>
-<b><a href="exceptions/index.html">Problemas?</b></a>
-</p>
-<ol start="2">
-    <li>
-    Analisar o <i>output</i> do Maven,
-    em especial as linhas começadas por <small>[WARNING]</small>:
-    </li>
-    <ol type="a">
-        <li>
-        Qual foi a causa da exceção?
-        </li>
-        <li>
-        Que exceção é que foi lançada?
-        </li>
-        <li>
-        Em que linha do código do cliente é que foi lançada a exceção?
-        </li>
-        <ul>
-            <li>Ou será um problema na configuração dos argumentos?</li>
-        </ul>
-    </ol>
-</ol>
+Um _socket_ é uma extremidade de uma ligação através de uma rede de computadores. Atualmente, a comunicação entre computadores faz-se quase sempre com IP (Internet Protocol). Os _sockets_ mais comuns usam TCP (Transmission Control Protocol), que estabelecem uma ligação entre cliente e servidor. Um endereço de _socket_ é composto por um endereço IP e por um número de porto.
 
-<ol start="3">
-    <li>Compilar e executar o servidor até funcionar sem erros.</li>
-</ol>
+![](connection-27383_960_720.png)
 
-<ul>
-    <li>
-    Em casos mais complicados,
-    pode usar-se o depurador (<i>debugger</i>):
-    </li>
-    <ul>
-        <li>
-        Criar um <i>breakpoint</i> no servidor,
-        na linha desejada
-        </li>
-        <li>
-        Inspeccione o valor das variáveis relevantes
-        </li>
-    </ul>
-</ul>
+O Java disponibiliza uma biblioteca de _sockets_ que está disponível no pacote `java.net`. O exemplo seguinte - servidor e cliente - ilustra a comunicação entre dois programas usando esta biblioteca.
 
-<p>
-Problema resolvido?<br /> 
-&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="http://www.phdcomics.com/comics/archive.php?comicid=180">Sim!</a><br />
+*   [Servidor de Sockets TCP/IP ![ZIP](../_img/zip.png)](socket-server.zip) - transferência de texto com sockets TCP/IP
+*   [Cliente de Sockets TCP/IP ![ZIP](../_img/zip.png)](socket-client.zip)
+
+Os _sockets_ estão na base da programação da comunicação na World Wide Web. O porto 80 é reservado para comunicação com o HTTP (HyperText Transfer Protocol).
+
+*   [(Breve) introdução à World Wide Web](www/index.html)
+*   Consultar Seção 1.6 do livro da cadeira e a apresentação das teóricas sobre World Wide Web e Sockets
+
+### Exercício a resolver até ao fim da aula
+
+1.  Obter o exemplo de **sockets TCP/IP**.  
+    Neste caso temos dois programas que colaboram entre si.
+
+1.  Configurar os projectos no Eclipse
+2.  Estudar o código fonte e os ficheiros `pom.xml` do servidor e do cliente.
+3.  Compilar e executar o servidor e cliente, seguindo as instruções no ficheiro `readme.txt`
+
+**[Problemas?](exceptions/index.html)**
+
+1.  Analisar o _output_ do Maven, em especial as linhas começadas por <small>[WARNING]</small>:
+
+1.  Qual foi a causa da exceção?
+2.  Que exceção é que foi lançada?
+3.  Em que linha do código do cliente é que foi lançada a exceção?
+
+*   Ou será um problema na configuração dos argumentos?
+
+1.  Compilar e executar o servidor até funcionar sem erros.
+
+*   Em casos mais complicados, pode usar-se o depurador (_debugger_):
+
+*   Criar um _breakpoint_ no servidor, na linha desejada
+*   Inspeccione o valor das variáveis relevantes
+
+Problema resolvido?  
+     [Sim!](http://www.phdcomics.com/comics/archive.php?comicid=180)  
 Retomar o exercício:
-</p>
 
-<ol start="4">
-    <li>
-    <b>Modificar os programas para que o servidor
-    responda ao cliente com uma mensagem de confirmação.</b>
-    </li>
-    <li>
-    ... o resto do enunciado será entregue no início da aula.
-    </li>
-</ol>
+1.  **Modificar os programas para que o servidor responda ao cliente com uma mensagem de confirmação.**
+2.  ... o resto do enunciado será entregue no início da aula.
 
+## Entrega da solução
 
+<span style="color:red;font-size:90%">A solução do exercício desta aula **não** conta para a avaliação, mas deverá ser entregue da forma descrita abaixo.</span>
 
+Fénix, Avaliação, Projetos, **mini Exercício 0**
 
-    <h2>Entrega da solução</h2>
+A solução completa deverá ser submetida no Fénix **antes do fim da sua aula de laboratório**.  
+Trabalhos submetidos depois da hora de fim da aula não serão considerados.
 
-    <span style="color:red;font-size:90%">
-    A solução do exercício desta aula <b>não</b> conta para a avaliação,
-    mas deverá ser entregue da forma descrita abaixo.
-    </span>
-    
-    <p>Fénix, Avaliação, Projetos, <b>mini Exercício 0</b></p>
+**Ter atenção ao seguinte:**
 
-    <p>
-    A solução completa deverá ser submetida no Fénix
-    <b>antes do fim da sua aula de laboratório</b>.<br />
-    Trabalhos submetidos depois da hora de fim da aula não serão considerados.
-    </p>
-    
-    <p>
-    <b>Ter atenção ao seguinte:</b>
-    </p>
-    <ul>
-        <li>Só serão aceites trabalhos de alunos que estiveram presentes no laboratório.</li>
-        <li>Assegure-se que a solução é enviada em formato ZIP e
-            que não contém código compilado.<br />
-            (faça <code>mvn clean</code> antes de zipar)</li>
-        <li>O servidor deve executar com o comando:
-            <code>mvn package exec:java</code>
-        </li>
-        <li>O cliente deve executar com o comando: 
-            <code>mvn compile exec:java</code>
-        </li>
-    </ul>
+*   Só serão aceites trabalhos de alunos que estiveram presentes no laboratório.
+*   Assegure-se que a solução é enviada em formato ZIP e que não contém código compilado.  
+    (faça `mvn clean` antes de zipar)
+*   O servidor deve executar com o comando: `mvn package exec:java`
+*   O cliente deve executar com o comando: `mvn compile exec:java`
 
-<p>&nbsp;</p>
+## Aprender mais!
 
-<h2>Aprender mais!</h2>
-<p>
-Vai valer a pena regressar a esta aula mais tarde e 
-aprender mais!
-</p>
+Vai valer a pena regressar a esta aula mais tarde e aprender mais!
 
-<h3>Ficheiros de configuração</h3>
-<ul>
-    <li>
-        <a href="java-app_config.zip">Exemplo de aplicação Java com configuração
-        <img src="../_img/zip.png" alt="ZIP" ></a>
-        - utiliza ficheiro com propriedades de configuração,
-        algumas delas preenchidas dinamicamente pelo Maven
-    </li>
-</ul>
+### Ficheiros de configuração
 
-<h3>Bibliotecas como módulos Maven</h3>
-<ul>
-    <li>
-        <a href="java-lib.zip">Exemplo de biblioteca Java
-        <img src="../_img/zip.png" alt="ZIP" ></a>
-        - uma biblioteca permite agrupar um conjunto de classes comuns, 
-        que podem ser usadas por outros programas.
-        O comando <code>mvn install</code> disponibiliza o módulo no repositório local.
-        O módulo instalado pode depois ser usado como dependência através das coordenadas 
-        (<i>groupId</i>, <i>artifactId</i>, e <i>version</i>).
-    </li>
-</ul>
+*   [Exemplo de aplicação Java com configuração ![ZIP](../_img/zip.png)](java-app_config.zip) - utiliza ficheiro com propriedades de configuração, algumas delas preenchidas dinamicamente pelo Maven
 
-<h3>JUnit + JMockit</h3>
-<ul>
-    <li><a href="junit/index.html">Introdução ao JUnit</a></li>
-    <li><a href="jmockit/index.html">Introdução ao JMockit</a></li>
-</ul>
-<ul>
-    <li>
-        <a href="junit-app.zip">Exemplo de aplicação Java com testes JUnit
-        <img src="../_img/zip.png" alt="ZIP" ></a>
-        - utiliza o Maven para compilar e testar: <code>mvn test</code>
-    </li>
-        <li>
-        <a href="jmockit-app.zip">Exemplo de aplicação Java com testes JMockit
-        <img src="../_img/zip.png" alt="ZIP" ></a>
-        - utiliza o Maven para compilar e testar,
-        com objectos simulados.
-    </li>
-</ul>
+### Bibliotecas como módulos Maven
 
-<hr />
+*   [Exemplo de biblioteca Java ![ZIP](../_img/zip.png)](java-lib.zip) - uma biblioteca permite agrupar um conjunto de classes comuns, que podem ser usadas por outros programas. O comando `mvn install` disponibiliza o módulo no repositório local. O módulo instalado pode depois ser usado como dependência através das coordenadas (_groupId_, _artifactId_, e _version_).
 
+### JUnit + JMockit
 
-<p>
-&copy; Docentes de Sistemas Distribu&iacute;dos,
-<a href="http://www.dei.tecnico.ulisboa.pt/">Dep. Eng. Informática</a>,
-<a href="http://www.ist.eu">Técnico Lisboa</a><br />
+*   [Introdução ao JUnit](junit/index.html)
+*   [Introdução ao JMockit](jmockit/index.html)
+
+*   [Exemplo de aplicação Java com testes JUnit ![ZIP](../_img/zip.png)](junit-app.zip) - utiliza o Maven para compilar e testar: `mvn test`
+*   [Exemplo de aplicação Java com testes JMockit ![ZIP](../_img/zip.png)](jmockit-app.zip) - utiliza o Maven para compilar e testar, com objectos simulados.
+
+* * *
+
+© Docentes de Sistemas Distribuídos, [Dep. Eng. Informática](http://www.dei.tecnico.ulisboa.pt/), [Técnico Lisboa](http://www.ist.eu)  
 Última actualização em 15 de fevereiro de 2016 por Miguel Pardal
-</p>
-
-</body>
-</html>

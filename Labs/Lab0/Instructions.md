@@ -1,6 +1,6 @@
-[Labs SD](../index.html) >
+[Labs SD](../index.html) 
 
-# [Original Instructions](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/02-tools/index.html) >
+# [Original Instructions](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/02-tools/index.html)
 
 # Ferramentas
 

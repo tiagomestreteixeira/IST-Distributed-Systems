@@ -34,7 +34,7 @@
                     <killAfter>-1</killAfter>
                     <mainClass>${mainclass}</mainClass>
                     <arguments>
-                        <argument>8080</argument><!-- intentional error to cause exception trace -->
+                        <argument>8000</argument><!-- intentional error to cause exception trace -->
                     </arguments>
                 </configuration>
             </plugin>

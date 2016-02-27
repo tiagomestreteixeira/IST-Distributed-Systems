@@ -22,7 +22,8 @@ public class SocketServer {
 		// Create server socket
 		ServerSocket serverSocket = new ServerSocket(port);
 		System.out.printf("Server accepting connections on port %d %n", port);
-
+		int a = 0;
+		while(a==0){
 		// wait for and then accept client connection
 		// a socket is created to handle the created connection
 		Socket clientSocket = serverSocket.accept();
@@ -34,21 +35,26 @@ public class SocketServer {
 
 		// Receive data until client closes the connection
 		String response;
+		int responseSize;
 		while ((response = in.readLine()) != null)
 		{
 			System.out.printf("Received message with content: '%s'%n", response);
-		DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());
+			response="";
+			for(int i =0;i<responseSize; i++){
+				resp
+			}
+			DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());
 		
 
 		// Send text to server as bytes
-		out.writeBytes("I recieved stuffs!");
+		out.writeBytes("Oh cliente, so me das trabalho");
 		out.writeBytes("\n");
 		}
 
 		// Close connection to current client
 		clientSocket.close();
 		System.out.println("Closed connection with client");
-
+		}
 		// Close server socket
 		serverSocket.close();
 		System.out.println("Closed server socket");

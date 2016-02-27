@@ -35,7 +35,7 @@
                     <mainClass>${mainclass}</mainClass>
                     <arguments>
                         <argument>localhost</argument>
-                        <argument>8000</argument>
+                        <argument>8080</argument>
                         <argument>test</argument>
                         <argument>1</argument>
                         <argument>2</argument>

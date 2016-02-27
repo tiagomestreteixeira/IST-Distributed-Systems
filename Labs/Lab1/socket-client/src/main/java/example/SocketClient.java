@@ -39,9 +39,16 @@ public class SocketClient {
 		// Create stream to send data to server
 		DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
+		int size = text.length();
+		out.writeByte(size);
+
+		
+		System.out.println("Sent text: " + (text.length()));
+
+
+		
 		// Send text to server as bytes
 		out.writeBytes(text);
-		out.writeBytes("\n");
 		System.out.println("Sent text: " + text);
 
 		// Read response from server

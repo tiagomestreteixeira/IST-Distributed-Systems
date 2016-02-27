@@ -34,4 +34,4 @@
 
 © Sistemas Distribuídos, [Dep. Eng. Informática](http://www.dei.tecnico.ulisboa.pt/), [Técnico Lisboa](http://www.ist.eu)
 
-![Alt text](logo.svg "Instituto Superior Técnico - Universidade de Lisboa")
+![Alt text](http://oweek.tecnico.ulisboa.pt/assets/img/partner-ist.png "Instituto Superior Técnico - Universidade de Lisboa")

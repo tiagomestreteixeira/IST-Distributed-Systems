@@ -13,7 +13,7 @@ O procedimento para definir variáveis de ambiente depende do sistema operativo:
 
 * * *
 
-## Java Developer Kit, JDK** (que inclui o Java Runtime Environment, JRE)  
+## Java Developer Kit, JDK (que inclui o Java Runtime Environment, JRE)  
 Ambiente para programação na linguagem Java
 
 *   Obter

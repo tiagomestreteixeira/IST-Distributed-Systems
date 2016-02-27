@@ -15,7 +15,7 @@ O procedimento para definir variáveis de ambiente depende do sistema operativo:
 
 * * *
 
-1.  **Java Developer Kit, JDK** (que inclui o Java Runtime Environment, JRE)  
+## Java Developer Kit, JDK** (que inclui o Java Runtime Environment, JRE)  
 Ambiente para programação na linguagem Java
 
 *   Obter
@@ -29,7 +29,7 @@ Ambiente para programação na linguagem Java
 *   Acrescentar JAVA_HOME/bin à variável de ambiente PATH
 *   Executar comando <code>javac -version</code> para confirmar
 
-3.  **Apache Maven, MVN**  
+## Apache Maven, MVN
 Ferramenta de linha de comando para a gestão do ciclo de vida de uma aplicação, incluindo a gestão de dependências de bibliotecas.
 
 *   Obter
@@ -43,7 +43,7 @@ Ferramenta de linha de comando para a gestão do ciclo de vida de uma aplicaçã
 *   Acrescentar M2_HOME/bin à PATH
 *   Executar comando <code>mvn --version</code> para confirmar
 
-5.  **Git**  
+## Git  
 Ferramenta de linha de comando para fazer controlo de versões.
 
 *   Obter
@@ -58,7 +58,7 @@ Ferramenta de linha de comando para fazer controlo de versões.
 
 *   Executar comando <code>git --version</code> para confirmar
 
-7.  **Eclipse for Java Enterprise Edition, Eclipse JEE**  
+## Eclipse for Java Enterprise Edition, Eclipse JEE
 Ambiente integrado de desenvolvimento para a plataforma Java, versão empresarial
 
 *   Obter o arquivo que contém o executável de Eclipse Mars e ficheiros associados:
@@ -93,7 +93,7 @@ Ambiente integrado de desenvolvimento para a plataforma Java, versão empresaria
 *   m2e-apt
 *   m2e-egit
 
-9.  **Apache jUDDI**  
+## Apache jUDDI  
 Servidor de nomes para Web Services que segue a norma UDDI (Universal Description, Discovery, and Integration)
 
 *   Obter

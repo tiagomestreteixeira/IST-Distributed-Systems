@@ -1,5 +1,3 @@
-[Labs SD](../) 
-
 # Ferramentas
 
 ## Objectivos da semana

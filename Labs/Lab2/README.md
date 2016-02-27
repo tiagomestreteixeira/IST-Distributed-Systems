@@ -1,157 +1,114 @@
 
-
-[Labs SD](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/index.html)
-
-# Ferramentas
+# Invocação de procedimentos remotos com SUN RPC
 
 ## Objectivos da semana
 
-*   Usar o Maven para compilar projectos Java
-*   Usar o Eclipse para programar e depurar projectos Java
-*   Usar _sockets_ para transferir dados entre cliente e servidor
-
-## Java
-
-O Java Developer Kit (JDK) é um conjunto de ferramentas para programação na linguagem Java.  
-As mais importantes são o <code>javac</code> que compila os programas e o <code>java</code> que lança as aplicações.
-
-<code>javac</code> e <code>java</code> são suficientes para construir pequenos programas, mas para programas de maior dimensão, é muito útil ter:
-
-*   Uma ferramenta que dê suporte a todas as tarefas de forma integrada, incluíndo a gestão de dependências - **Maven**;
-*   Um ambiente que apoie o programador em todas as tarefas - **Eclipse**;
-*   Bibliotecas para sistematizar os testes - **JUnit** - e para simular objectos durante os testes - **JMockit**.
-
-A tabela seguinte resume as utilizações mais comuns do JDK, Maven, e Eclipse:
-
-*   [Java tools reference card](java-tools-ref-card.pdf) ![PDF](../_img/pdf.png)
-
-## Maven
-
-A ferramenta Maven é, talvez, a mais importante logo a seguir ao próprio JDK (sim, é mais importante que o Eclipse). A utilização do Eclipse é opcional, mas o Maven é considerado obrigatório.
-
-O Maven desempenha o papel muito importante de explicitar dependências de outros programas e de automatizar toda a construção. Todos os programas devem ter a configuração Maven - **pom.xml** - para que possam ser (re)construídos de forma repetível.
-
-*   [Introdução ao Maven](maven/index.html)
-
-*   [Exemplo de aplicação Java simples ![ZIP](../_img/zip.png)](java-app.zip) - utiliza o Maven para compilar e executar
-
-*   Estudar o código fonte e o ficheiro <code>pom.xml</code>.
-*   Compilar e executar o programa, seguindo as instruções no ficheiro <code>readme.txt</code>.  
-    Experimente através da linha de comando <code>mvn ...</code>
-
-## Eclipse
-
-O Eclipse pode ser configurado por cima do JDK (Eclipse/JDK), ou então por cima também do Maven (Eclipse/Maven/JDK).
-
-*   [Maven no Eclipse](eclipse/maven/index.html)
-*   [Dicas de utilização do Eclipse](http://www.slideshare.net/MiguelLPardal/eclipse-workshop-presentation)
-
-*   Voltar ao [exemplo de aplicação Java simples](java-app.zip):
-
-*   Configurar o projecto no Eclipse, seguindo as indicações no ficheiro <code>readme.txt</code>.
-*   Experimente executar através da linha de comando <code>mvn ...</code> e executar através do Eclipse (opção "run").  
-
-*   Experimente também executar através do Maven dentro do Eclipse (m2eclipse): "Run As", "Maven Build"
-
-*   Experimente as funcionalidades de depuração:
-
-*   Criar um _breakpoint_ no programa e fazer _debug_.
-*   Alterar os argumentos do programa e inspeccionar as variáveis durante a execução.
-
-## Sockets
-
-Um _socket_ é uma extremidade de uma ligação através de uma rede de computadores. Atualmente, a comunicação entre computadores faz-se quase sempre com IP (Internet Protocol). Os _sockets_ mais comuns usam TCP (Transmission Control Protocol), que estabelecem uma ligação entre cliente e servidor. Um endereço de _socket_ é composto por um endereço IP e por um número de porto.
+*   Distribuir uma aplicação originalmente centralizada usando o SUN RPC
+*   Aprofundar os conhecimentos sobre RPC
 
 
-O Java disponibiliza uma biblioteca de _sockets_ que está disponível no pacote <code>java.net</code>. O exemplo seguinte - servidor e cliente - ilustra a comunicação entre dois programas usando esta biblioteca.
+## Materiais de apoio à aula
 
-*   [Servidor de Sockets TCP/IP]  - transferência de texto com sockets TCP/IP
-*   [Cliente de Sockets TCP/IP]
+*   [Capítulo sobre SUN RPC da 2ª Edição do livro "Distributed Systems: Concepts and Design"](http://www.cdk4.net/wo/additional/rmi/Ed2/SunRPC.pdf)
 
-Os _sockets_ estão na base da programação da comunicação na World Wide Web. O porto 80 é reservado para comunicação com o HTTP (HyperText Transfer Protocol).
+## Exercício a resolver até ao fim da aula
 
-*   [(Breve) introdução à World Wide Web]
-*   Consultar Seção 1.6 do livro da cadeira e a apresentação das teóricas sobre World Wide Web e Sockets
+####  Numa máquina Linux/Unix, descarregue e descomprima o [código fonte de um servidor do Jogo do Galo/Tic Tac Toe, baseado em Sun RPC](http://disciplinas.tecnico.ulisboa.pt/~leic-sod.daemon/2015-2016/labs/03-rpc/ttt.zip).  
 
-### Exercício a resolver até ao fim da aula
+Sugestões:
 
-1.  Obter o exemplo de **sockets TCP/IP**.  
-    Neste caso temos dois programas que colaboram entre si.
+*   Caso não disponha de máquina Unix/Linux, use a sua conta no <code>sigma.tecnico.ulisboa.pt</code>.
+Pode usar um dos vários editores de texto no terminal: <code>nano</code>, <code>vi</code>, <code>emacs</code>, <code>pico</code>, <code>joe</code>, ...
 
-1.  Configurar os projectos no Eclipse
-2.  Estudar o código fonte e os ficheiros <code>pom.xml</code> do servidor e do cliente.
-3.  Compilar e executar o servidor e cliente, seguindo as instruções no ficheiro <code>readme.txt</code>
+*   Para evitar conflitos com outros RPC na mesma máquina deverá editar o identificador do programa (<code>ttt.x</code>) e substituir os últimos 5 dígitos pelo seu número de aluno
 
-**[Problemas?](exceptions/index.html)**
+*   Se quiser correr o laboratório no seu próprio computador é necessário instalar os seguintes pacotes Linux (os nomes exactos variam conforme a distribuição usada): <code>rpcbind</code> e <code>nfs-kernel-server</code>.
 
-1.  Analisar o _output_ do Maven, em especial as linhas começadas por <small>[WARNING]</small>:
+Em algumas máquinas, que recorrem ao rpcbind, pode ser necessário lancar esta aplicação usando <code>rpcbind -wi</code> ou então usando privilégios de administração <code>(sudo)</code> no caso de obter a seguinte mensagem de erro: _"Cannot register service: RPC: Authentication error; why = Client credential too weak"
 
-1.  Qual foi a causa da exceção?
-2.  Que exceção é que foi lançada?
-3.  Em que linha do código do cliente é que foi lançada a exceção?
 
-*   Ou será um problema na configuração dos argumentos?
+####  Estude a interface remota deste servidor (ficheiro <code>ttt.x</code>) e explore a implementação do servidor para compreender como cada procedimento remoto está implementado (restantes ficheiros iniciados em <code>ttt</code>).
 
-1.  Compilar e executar o servidor até funcionar sem erros.
+*   Para que serve o _mutex_ usado no ficheiro ttt_lib.c?
 
-*   Em casos mais complicados, pode usar-se o depurador (_debugger_):
+#####  Execute na consola: <code>> rpcgen ttt.x</code> para que o SUN RPC gere os vários ficheiros de suporte à aplicação distribuída.  
 
-*   Criar um _breakpoint_ no servidor, na linha desejada
-*   Inspeccione o valor das variáveis relevantes
+#####  Depois execute:  
+<code>> rpcgen -Sc ttt.x > ttt_client.c</code> para gerar um exemplo de um cliente. (existe também a opção <code>-Ss</code> para gerar um exemplo de servidor)  
 
-Problema resolvido?  
-     [Sim!](http://www.phdcomics.com/comics/archive.php?comicid=180)  
-Retomar o exercício:
 
-1.  **Modificar os programas para que o servidor responda ao cliente com uma mensagem de confirmação.**
-2.  ... o resto do enunciado será entregue no início da aula.
+####  Estude os ficheiros gerados.
+
+*  Onde estão as rotinas de conversão de tipos de dados?
+
+*  Onde é chamada a função <code>clnt_call()</code>?
+
+*  Que ficheiros pertencem ao cliente, ao servidor, e a ambos? (consulte também a <code>Makefile</code>)
+
+*  Que ficheiros estão incompletos e devem ser alterados pelo programador?
+
+*  Qual o protocolo que o cliente e servidor usam para comunicar?  
+
+
+####  Pretende-se também que haja um processo cliente (que possivelmente corre em máquina diferente que o servidor) que interage com os jogadores e que invoca as funções do servidor remotamente, via SUN RPC.  
+
+A lógica desse cliente já está programada em <code>local_main.c</code>, mas esse ficheiro está feito assumindo chamadas locais.  
+
+Com base no <code>local_main.c</code>, modifique o ficheiro <code>ttt_client.c</code> por forma a obter um cliente do servidor remoto.  
+
+Sugestão: 
+
+* copie o código da função main do <code>local_main.c</code> para dentro do método <code>ttt_1</code> de <code>ttt_client.c</code> 
+
+* procure as linhas onde existem chamadas locais às funções <code>currentBoard</code>, <code>play</code> e <code>checkWinner</code> e substitua essas chamadas pelos exemplos de chamadas remotas que já existem no ficheiro <code>ttt_client.c</code> gerado 
+
+* Não se esqueça de verificar o retorno da chamada remota ao servidor e garantir o tratamento adequado em caso de erro.  
+
+Utilize o comando <code>make</code> para compilar.  
+
+
+####  Lance o servidor e experimente jogar remotamente através do cliente construído.  
+
+Para tal, execute na consola:  
+
+* <code>> ./ttt_server &</code> (lança servidor em fundo - _background_)  
+
+* <code>> ./ttt_client localhost</code> (lança cliente para jogar em servidor registado na própria máquina (localhost)  
+
+
+####  Pode consultar o estado dos processos com o comando <code>ps</code> e terminar instâncias com o comando <code>kill</code>.
+
+O resto do enunciado será entregue na aula. O objectivo será estender a solução resultante do enunciado acima com mais procedimentos ou modificar alguns dos seus procedimentos actuais.
 
 
 ## Entrega da solução
 
-<span style="color:red;font-size:90%">A solução do exercício desta aula **não** conta para a avaliação, mas deverá ser entregue da forma descrita abaixo.</span>
-
-Fénix, Avaliação, Projetos, **mini Exercício 0**
+Fénix, Avaliação, Projetos, **mini Exercício 1 - Sun RPC**
 
 A solução completa deverá ser submetida no Fénix **antes do fim da sua aula de laboratório**.  
 Trabalhos submetidos depois da hora de fim da aula não serão considerados.
+
 
 **Ter atenção ao seguinte:**
 
 *   Só serão aceites trabalhos de estudantes que estiveram presentes no laboratório.
 *   Assegure-se que a solução é enviada em formato ZIP e que não contém código compilado.  
-    (faça <code>mvn clean</code> antes de zipar)
-*   Deverá incluir um ficheiro <code>respostas.txt</code> com as respostas (breves) às perguntas do enunciado do exercício.
+(faça <code>make clean</code> antes de zipar)
+*   Deverá incluir um ficheiro <code>respostas.txt</code> com as respostas às perguntas do enunciado do exercício.
 *   Deverá também incluir um ficheiro <code>instrucoes.txt</code> com resumo da funcionalidade implementada e com instruções para colocar o programa a funcionar como esperado.  
-    Por exemplo:
+
+
+Por exemplo:
 
 *   A funcionalidade pedida foi total/parcialmente implementada **...**
-*   O servidor deve executar com o comando: <code>mvn package exec:java</code>
-*   O cliente deve executar com o comando: <code>mvn compile exec:java</code>
+*   Para compilar: <code>make</code>
+*   O servidor deve executar com o comando: <code>./ttt_server &</code>
+*   O cliente deve executar com o comando: <code>./ttt_client localhost</code>
 
-
-
-## Aprender mais!
-
-Vai valer a pena regressar a esta aula mais tarde e aprender mais.
-
-### Ficheiros de configuração
-
-*   [Exemplo de aplicação Java com configuração ![ZIP](../_img/zip.png)](java-app_config.zip) - utiliza ficheiro com propriedades de configuração, algumas delas preenchidas dinamicamente pelo Maven
-
-### Bibliotecas como módulos Maven
-
-*   [Exemplo de biblioteca Java ![ZIP](../_img/zip.png)](java-lib.zip) - uma biblioteca permite agrupar um conjunto de classes comuns, que podem ser usadas por outros programas. O comando <code>mvn install</code> disponibiliza o módulo no repositório local. O módulo instalado pode depois ser usado como dependência através das coordenadas (_groupId_, _artifactId_, e _version_).
-
-### JUnit + JMockit
-
-*   [Introdução ao JUnit](junit/index.html)
-*   [Introdução ao JMockit](jmockit/index.html)
-
-*   [Exemplo de aplicação Java com testes JUnit] - utiliza o Maven para compilar e testar: <code>mvn test</code>
-*   [Exemplo de aplicação Java com testes JMockit] - utiliza o Maven para compilar e testar, com objectos simulados.
 
 * * *
 
-© Docentes de Sistemas Distribuídos, [Dep. Eng. Informática](http://www.dei.tecnico.ulisboa.pt/), [Técnico Lisboa](http://www.ist.eu)  
-Última actualização em 22 de fevereiro de 2016 por Miguel Pardal
+
+![IST-LOGO](https://camo.githubusercontent.com/8eb8ec735b6ac78c6495caa84c7ea6c02a5ca966/687474703a2f2f6f7765656b2e7465636e69636f2e756c6973626f612e70742f6173736574732f696d672f706172746e65722d6973742e706e67)
+
+© Sistemas Distribuídos, [Dep. Eng. Informática](http://www.dei.tecnico.ulisboa.pt/), [Técnico Lisboa](http://www.ist.eu)  

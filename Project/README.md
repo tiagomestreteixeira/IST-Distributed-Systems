@@ -4,7 +4,7 @@ Distributed Systems Project - Instituto Superior Técnico
 
 ### Don't have a fucking idea about what's going to be 
 
-[CHUCKNORRIS](https://j.gifs.com/Z6wkyQ.gif)
+![CHUCKNORRIS](https://j.gifs.com/Z6wkyQ.gif)
 
 * * *
 

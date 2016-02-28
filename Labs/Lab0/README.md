@@ -1,4 +1,6 @@
-# Software
+# Lab0 - Instalação Software
+
+## Software
 
 Para realizar os exercícios de laboratório e o projecto de SD é necessário instalar um conjunto de ferramentas e servidores. Todo o software listado abaixo está disponível em sistemas Windows, Linux e Mac.  
 

@@ -1,5 +1,5 @@
 # IST - Distributed Systems
-Distributed Systems Instituto Superior Técnico Course Content - Practical Assignments
+Distributed Systems Instituto Superior Tecnico Course Content - Practical Assignments
 
 * * *
 

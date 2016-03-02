@@ -20,13 +20,11 @@
  	char *buffer;
  	play_args p_args;
 
-#ifndef	DEBUG
  	clnt = clnt_create (host, TTT, V1, "udp");
  	if (clnt == NULL) {
  		clnt_pcreateerror (host);
  		exit (1);
  	}
-#endif	/* DEBUG */
 
  	/*if (result_3 == (int *) NULL) {
  		clnt_perror (clnt, "call failed");
@@ -40,6 +38,9 @@
  		do {
 			/* Print current board */
  			buffer = *currentboard_1(NULL,clnt);
+ 			if (buffer == (char *) NULL) {
+ 				clnt_perror (clnt, "call failed");
+ 			}
 
  			printf("%s\n", buffer);
  			free(buffer);
@@ -61,6 +62,10 @@
  			p_args.player = player;
 
  			play_res = *play_1(&p_args, clnt);
+ 			if (play_res == (int) NULL) {
+ 				clnt_perror (clnt, "call failed");
+ 			}
+
  			if (play_res != 0) {
  				switch (play_res) {
  					case 1:
@@ -81,6 +86,9 @@
  		} while(play_res != 0);
 
  		winner = *checkwinner_1(NULL, clnt);
+ 		if (winner == (int) NULL) {
+ 			clnt_perror (clnt, "call failed");
+ 		}
 		player = (player+1)%2;                           /* Select player */
 
  		printf("player %d\n", player);
@@ -89,6 +97,9 @@
 
 	/* Game is over so display the final board */
  	buffer = *currentboard_1(NULL,clnt);
+ 	if (buffer == (char *) NULL) {
+ 		clnt_perror (clnt, "call failed");
+ 	}
  	printf("%s\n", buffer);
  	free(buffer);
 
@@ -98,9 +109,7 @@
  	else
  		printf("\nCongratulations, player %d, YOU ARE THE WINNER!\n", winner);
 
-#ifndef	DEBUG
  	clnt_destroy (clnt);
-#endif	 /* DEBUG */
  }
 
 

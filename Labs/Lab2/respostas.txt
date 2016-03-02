@@ -1,0 +1,27 @@
+1.
+
+2. 
+Serve para assegurar que as operações de print, jogadas e verificação de vencedor são efectuadas de forma atómica, assegurando assim a exclusão das secções de código entre locks e unlocks, e que apenas uma unica thread(cliente) de execução as corra num dado momento.
+
+3.
+
+4.
+a) 
+'ttt.h' se o pedido for a nova localização da estrutura de dados.
+'ttt.x' se o pedido for a localização antiga da estrutura de dados.
+Por fim, se o que eles quiserem for o ficheiro onde é feita a conversão em si, então será 'xdr.c'.
+
+b)
+No ficheiro 'ttt clnt.c'.
+
+c)
+Ficheiros do servidor: 'ttt_svc.c' 'ttt_server.c' e 'ttt_xdr.c', sendo o último partilhado com o cliente.
+Ficheiros do cliente: 'ttt_clnt.c' 'ttt_client.c' e 'ttt_xdr.c', sendo o último partilhado com o servidor.
+
+d)
+Os ficheiros 'ttt_client.c' e 'ttt_server.c' apresentam apenas um template e será esperado que sejam alterados peo programador.
+
+e)
+Protocolo UDP.
+
+5.

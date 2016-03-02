@@ -1,9 +1,9 @@
-1.
+1.N/A
 
 2. 
 Serve para assegurar que as operações de print, jogadas e verificação de vencedor são efectuadas de forma atómica, assegurando assim a exclusão das secções de código entre locks e unlocks, e que apenas uma unica thread(cliente) de execução as corra num dado momento.
 
-3.
+3.N/R
 
 4.
 a) 
@@ -12,7 +12,7 @@ a)
 Por fim, se o que eles quiserem for o ficheiro onde é feita a conversão em si, então será 'xdr.c'.
 
 b)
-No ficheiro 'ttt clnt.c'.
+No ficheiro 'ttt_clnt.c'.
 
 c)
 Ficheiros do servidor: 'ttt_svc.c' 'ttt_server.c' e 'ttt_xdr.c', sendo o último partilhado com o cliente.
@@ -24,4 +24,6 @@ Os ficheiros 'ttt_client.c' e 'ttt_server.c' apresentam apenas um template e ser
 e)
 Protocolo UDP.
 
-5.
+5.N/R
+6.N/R
+7.N/R

@@ -36,3 +36,12 @@ checkwinner_1_svc(void *argp, struct svc_req *rqstp)
 
   return &result;
 }
+
+int *
+restart_1_svc(void *argp, struct svc_req *rqstp)
+{
+  static int result;
+  result = restart();
+
+  return &result;
+}

@@ -1,0 +1,4 @@
+ A funcionalidade pedida foi totalmente implementada.
+ Para compilar executar o comando: make
+ O servidor deve ser executado primeiro com o comando: ./ttt_server &
+ O cliente deve ser executado depois do server estar a correr com o comando: ./ttt_client localhost

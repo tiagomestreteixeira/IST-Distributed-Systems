@@ -16,20 +16,18 @@
 	int row = 0;                                 /* Row index for a square               */  
 	int column = 0;                              /* Column index for a square            */
 	int winner = -1;                              /* The winning player                   */
- 	int play_res;
  	char *buffer;
  	play_args p_args;
+ 	
+ 	int play_res;
+ 	int restart_res;
+
 
  	clnt = clnt_create (host, TTT, V1, "udp");
  	if (clnt == NULL) {
  		clnt_pcreateerror (host);
  		exit (1);
  	}
-
- 	/*if (result_3 == (int *) NULL) {
- 		clnt_perror (clnt, "call failed");
- 	}
-*/
 
 	/* The main game loop. The game continues for up to 9 turns */
 	/* As long as there is no winner                            */
@@ -49,8 +47,16 @@
  				"where you want to place your %c (or 0 to refresh the board): ", player,(player==1)?'X':'O');
  			scanf(" %d", &go);
 
- 			if (go == 0){
+ 			if (go == 0) {
  				play_res = 0;
+ 				continue;
+ 			} else if (go == 10) {
+ 				restart_res = *restart_1(NULL, clnt);
+ 				if (&restart_res == (int *) NULL) {
+ 					clnt_perror (clnt, "call failed");
+ 				}
+ 				player = 0;
+
  				continue;
  			}
 
@@ -85,13 +91,15 @@
  			}
  		} while(play_res != 0);
 
- 		winner = *checkwinner_1(NULL, clnt);
- 		if (&winner == (int *) NULL) {
- 			clnt_perror (clnt, "call failed");
- 		}
-		player = (player+1)%2;                           /* Select player */
+ 		if (go != 10) {
+ 			winner = *checkwinner_1(NULL, clnt);
+ 			if (&winner == (int *) NULL) {
+ 				clnt_perror (clnt, "call failed");
+ 			}
+			player = (player+1)%2;                           /* Select player */
 
- 		printf("player %d\n", player);
+ 			printf("player %d\n", player);
+ 		}
 
  	} while (winner == -1);
 

@@ -62,7 +62,7 @@
  			p_args.player = player;
 
  			play_res = *play_1(&p_args, clnt);
- 			if (play_res == (int) NULL) {
+ 			if (&play_res == (int *) NULL) {
  				clnt_perror (clnt, "call failed");
  			}
 
@@ -86,7 +86,7 @@
  		} while(play_res != 0);
 
  		winner = *checkwinner_1(NULL, clnt);
- 		if (winner == (int) NULL) {
+ 		if (&winner == (int *) NULL) {
  			clnt_perror (clnt, "call failed");
  		}
 		player = (player+1)%2;                           /* Select player */

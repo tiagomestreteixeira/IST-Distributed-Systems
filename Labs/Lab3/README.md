@@ -23,7 +23,7 @@ Partindo de um Jogo do Galo (Tic Tac Toe) feito para um cenário local, pretende
 _Sugestão: nas alíneas seguintes, corra cliente e servidor numa máquina não partilhada com outros grupos, para evitar conflitos com outros grupos (ou seja, use a máquina do laboratório e não o sigma)._
 
 1.  Descarregue e descomprima o código fonte da aplicação Jogo do Galo/Tic Tac Toe  
-([servidor![ZIP](http://disciplinas.tecnico.ulisboa.pt/~leic-sod.daemon/2015-2016/labs/_img/zip.png)]](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/04-rmi/ttt-rmi-server.zip), [cliente![ZIP](http://disciplinas.tecnico.ulisboa.pt/~leic-sod.daemon/2015-2016/labs/_img/zip.png)]](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/04-rmi/ttt-rmi-client.zip)).
+([servidor![ZIP](http://disciplinas.tecnico.ulisboa.pt/~leic-sod.daemon/2015-2016/labs/_img/zip.png)](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/04-rmi/ttt-rmi-server.zip), [cliente![ZIP](http://disciplinas.tecnico.ulisboa.pt/~leic-sod.daemon/2015-2016/labs/_img/zip.png)](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/04-rmi/ttt-rmi-client.zip)).
 1.  Importe o projecto no eclipse, [seguindo os passos aqui indicados](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/02-tools/eclipse/configure-maven-project/index.html).
 2.  Estude os principais ficheiros do pacote com a implementação do jogo (Game.java e TTT.java).
 3.  Compile e experimente o jogo (pelo Eclipse ou executando <code>mvn package appassembler:assemble</code> seguido de <code>target\appassembler\bin\ttt-rmi-server</code> numa consola **exterior ao Eclipse**).

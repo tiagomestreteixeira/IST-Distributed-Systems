@@ -1,157 +1,94 @@
+# Lab 3 - Java RMI
+
+## Objectivos
+
+*   Distribuir uma aplicação originalmente centralizada usando o Java RMI
+*   Aprofundar os conhecimentos sobre Java RMI
+*   Tomar contacto com os mecanismos de passagem de classes do Java RMI
+
+## No laboratório:
+
+*   Esclarecer dúvidas
+*   Terminar o exercício
 
 
-[Labs SD](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/index.html)
+## Documentação
 
-# Ferramentas
+*   Capítulo 5.5 Java RMI do livro principal da cadeira (Coulouris "Distributed Systems: Concepts and Design")
 
-## Objectivos da semana
+## Enunciado
 
-*   Usar o Maven para compilar projectos Java
-*   Usar o Eclipse para programar e depurar projectos Java
-*   Usar _sockets_ para transferir dados entre cliente e servidor
+Partindo de um Jogo do Galo (Tic Tac Toe) feito para um cenário local, pretende-se desenvolver uma variante do jogo onde a parte computacionalmente mais pesada é realizada por um servidor remoto.
 
-## Java
+_Sugestão: nas alíneas seguintes, corra cliente e servidor numa máquina não partilhada com outros grupos, para evitar conflitos com outros grupos (ou seja, use a máquina do laboratório e não o sigma)._
 
-O Java Developer Kit (JDK) é um conjunto de ferramentas para programação na linguagem Java.  
-As mais importantes são o <code>javac</code> que compila os programas e o <code>java</code> que lança as aplicações.
+1.  Descarregue e descomprima o código fonte da aplicação Jogo do Galo/Tic Tac Toe  
+([servidor![ZIP](http://disciplinas.tecnico.ulisboa.pt/~leic-sod.daemon/2015-2016/labs/_img/zip.png)]](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/04-rmi/ttt-rmi-server.zip), [cliente![ZIP](http://disciplinas.tecnico.ulisboa.pt/~leic-sod.daemon/2015-2016/labs/_img/zip.png)]](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/04-rmi/ttt-rmi-client.zip)).
+1.  Importe o projecto no eclipse, [seguindo os passos aqui indicados](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/02-tools/eclipse/configure-maven-project/index.html).
+2.  Estude os principais ficheiros do pacote com a implementação do jogo (Game.java e TTT.java).
+3.  Compile e experimente o jogo (pelo Eclipse ou executando <code>mvn package appassembler:assemble</code> seguido de <code>target\appassembler\bin\ttt-rmi-server</code> numa consola **exterior ao Eclipse**).
+2.  Pretende-se que a classe <code>TTT.java</code>, que implementa o jogo, passe a ser invocável remotamente.  
+Dessa forma, permitir-se-á que haja um cliente remoto (que possivelmente corre em máquina diferente que a máquina que serve o jogo) que interage com os jogadores e que invoca as funções do servidor via Java RMI (Remote Method Invocation).
+1.  Comece por desenhar a interface remota do servidor numa interface chamada <code>TTTService</code>. A interface deve expor todas as funções remotas que o cliente precisa de invocar. Para ser uma interface remota, precisa também de herdar de <code>java.rmi.Remote</code> e cada um dos seus métodos deve lançar uma <code>java.rmi.RemoteException</code>.  
+Consulte o [exemplo de interface remota apresentado no livro](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/04-rmi/ShapeList.java) para ajuda.
+2.  Transforme a classe <code>TTT</code> para que passe a implementar a interface remota <code>TTTService</code>. Para que instâncias desta classe possam ser objectos remotos, modifique a definição da classe <code>TTT</code> para que ela passe a herdar de <code>java.rmi.server.UnicastRemoteObject</code> e acrescente um construtor que lance excepção <code>RemoteException</code>.  
+Consulte o [exemplo da classe shapeListServant apresentado no livro](./ShapeListServant.java) para ajuda.
+3.  No projecto servidor, crie uma nova classe com método <tt>main</tt>, onde correrá o servidor.  
+No método <code>main</code> deverá:
+1.  Instanciar um objecto remoto do tipo TTT, eConsulte o [exemplo da classe ShapeListServer apresentado no livro](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/04-rmi/ShapeListServant.java) para ajuda.  
+Não se esqueça de actualizar o ficheiro <code>pom.xml</code>.
+4.  Abra agora o ficheiro fonte da classe <code>ttt.Client</code>.
+1.  Baseando-se na classe ttt.Game do projecto do servidor, implemente um cliente remoto que, com base nos comandos recebidos pela consola local, invoca métodos do jogo remoto. Assuma que ambos os jogadores de cada jogo usam o mesmo cliente.  
+Consulte o [exemplo do cliente apresentado no livro](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/04-rmi/ShapeListClient.java) para ajuda.
+2.  Não se esqueça de na chamada ao método <code>Naming.lookup</code>, definir correctamente o URL que localiza o objecto, na forma: <code>//host:port/name</code>, em que <code>host</code> e <code>port</code> definem a máquina e o porto onde corre o <code>rmiregistry</code> (respectivamente) onde foi registado o objecto remoto e <code>name</code> é o nome que foi atribuído ao objecto pelo servidor quando chamou <code>rebind</code>.
+3.  Experimente lançar o servidor e depois um cliente para jogar.
+4.  Responda às seguintes questões:
+1.  Quando se usa SUN RPC é gerado código para converter os dados de e para um formato de rede. O que acontece quando se usa RMI?
+2.  Das classes e interfaces Java que usou, quais as que pertencem apenas ao cliente, apenas ao servidor e a ambos?
 
-<code>javac</code> e <code>java</code> são suficientes para construir pequenos programas, mas para programas de maior dimensão, é muito útil ter:
-
-*   Uma ferramenta que dê suporte a todas as tarefas de forma integrada, incluíndo a gestão de dependências - **Maven**;
-*   Um ambiente que apoie o programador em todas as tarefas - **Eclipse**;
-*   Bibliotecas para sistematizar os testes - **JUnit** - e para simular objectos durante os testes - **JMockit**.
-
-A tabela seguinte resume as utilizações mais comuns do JDK, Maven, e Eclipse:
-
-*   [Java tools reference card](java-tools-ref-card.pdf) ![PDF](../_img/pdf.png)
-
-## Maven
-
-A ferramenta Maven é, talvez, a mais importante logo a seguir ao próprio JDK (sim, é mais importante que o Eclipse). A utilização do Eclipse é opcional, mas o Maven é considerado obrigatório.
-
-O Maven desempenha o papel muito importante de explicitar dependências de outros programas e de automatizar toda a construção. Todos os programas devem ter a configuração Maven - **pom.xml** - para que possam ser (re)construídos de forma repetível.
-
-*   [Introdução ao Maven](maven/index.html)
-
-*   [Exemplo de aplicação Java simples ![ZIP](../_img/zip.png)](java-app.zip) - utiliza o Maven para compilar e executar
-
-*   Estudar o código fonte e o ficheiro <code>pom.xml</code>.
-*   Compilar e executar o programa, seguindo as instruções no ficheiro <code>readme.txt</code>.  
-    Experimente através da linha de comando <code>mvn ...</code>
-
-## Eclipse
-
-O Eclipse pode ser configurado por cima do JDK (Eclipse/JDK), ou então por cima também do Maven (Eclipse/Maven/JDK).
-
-*   [Maven no Eclipse](eclipse/maven/index.html)
-*   [Dicas de utilização do Eclipse](http://www.slideshare.net/MiguelLPardal/eclipse-workshop-presentation)
-
-*   Voltar ao [exemplo de aplicação Java simples](java-app.zip):
-
-*   Configurar o projecto no Eclipse, seguindo as indicações no ficheiro <code>readme.txt</code>.
-*   Experimente executar através da linha de comando <code>mvn ...</code> e executar através do Eclipse (opção "run").  
-
-*   Experimente também executar através do Maven dentro do Eclipse (m2eclipse): "Run As", "Maven Build"
-
-*   Experimente as funcionalidades de depuração:
-
-*   Criar um _breakpoint_ no programa e fazer _debug_.
-*   Alterar os argumentos do programa e inspeccionar as variáveis durante a execução.
-
-## Sockets
-
-Um _socket_ é uma extremidade de uma ligação através de uma rede de computadores. Atualmente, a comunicação entre computadores faz-se quase sempre com IP (Internet Protocol). Os _sockets_ mais comuns usam TCP (Transmission Control Protocol), que estabelecem uma ligação entre cliente e servidor. Um endereço de _socket_ é composto por um endereço IP e por um número de porto.
-
-
-O Java disponibiliza uma biblioteca de _sockets_ que está disponível no pacote <code>java.net</code>. O exemplo seguinte - servidor e cliente - ilustra a comunicação entre dois programas usando esta biblioteca.
-
-*   [Servidor de Sockets TCP/IP]  - transferência de texto com sockets TCP/IP
-*   [Cliente de Sockets TCP/IP]
-
-Os _sockets_ estão na base da programação da comunicação na World Wide Web. O porto 80 é reservado para comunicação com o HTTP (HyperText Transfer Protocol).
-
-*   [(Breve) introdução à World Wide Web]
-*   Consultar Seção 1.6 do livro da cadeira e a apresentação das teóricas sobre World Wide Web e Sockets
-
-### Exercício a resolver até ao fim da aula
-
-1.  Obter o exemplo de **sockets TCP/IP**.  
-    Neste caso temos dois programas que colaboram entre si.
-
-1.  Configurar os projectos no Eclipse
-2.  Estudar o código fonte e os ficheiros <code>pom.xml</code> do servidor e do cliente.
-3.  Compilar e executar o servidor e cliente, seguindo as instruções no ficheiro <code>readme.txt</code>
-
-**[Problemas?](exceptions/index.html)**
-
-1.  Analisar o _output_ do Maven, em especial as linhas começadas por <small>[WARNING]</small>:
-
-1.  Qual foi a causa da exceção?
-2.  Que exceção é que foi lançada?
-3.  Em que linha do código do cliente é que foi lançada a exceção?
-
-*   Ou será um problema na configuração dos argumentos?
-
-1.  Compilar e executar o servidor até funcionar sem erros.
-
-*   Em casos mais complicados, pode usar-se o depurador (_debugger_):
-
-*   Criar um _breakpoint_ no servidor, na linha desejada
-*   Inspeccione o valor das variáveis relevantes
-
-Problema resolvido?  
-     [Sim!](http://www.phdcomics.com/comics/archive.php?comicid=180)  
-Retomar o exercício:
-
-1.  **Modificar os programas para que o servidor responda ao cliente com uma mensagem de confirmação.**
-2.  ... o resto do enunciado será entregue no início da aula.
-
+O resto do enunciado será entregue na aula. O objectivo será estender a solução resultante do enunciado acima com mais procedimentos ou modificar alguns dos seus procedimentos actuais.
 
 ## Entrega da solução
 
-<span style="color:red;font-size:90%">A solução do exercício desta aula **não** conta para a avaliação, mas deverá ser entregue da forma descrita abaixo.</span>
-
-Fénix, Avaliação, Projetos, **mini Exercício 0**
+Fénix, Avaliação, Projetos, **mini Exercício 2 - Java RMI**
 
 A solução completa deverá ser submetida no Fénix **antes do fim da sua aula de laboratório**.  
-Trabalhos submetidos depois da hora de fim da aula não serão considerados.
+Trabalhos submetidos depois da hora de fim da aula não serão considerados.  
 
 **Ter atenção ao seguinte:**
 
 *   Só serão aceites trabalhos de estudantes que estiveram presentes no laboratório.
 *   Assegure-se que a solução é enviada em formato ZIP e que não contém código compilado.  
-    (faça <code>mvn clean</code> antes de zipar)
-*   Deverá incluir um ficheiro <code>respostas.txt</code> com as respostas (breves) às perguntas do enunciado do exercício.
+(faça <code>mvn clean</code> antes de zipar)
+*   Deverá incluir um ficheiro <code>respostas.txt</code> com as respostas às perguntas do enunciado do exercício.
 *   Deverá também incluir um ficheiro <code>instrucoes.txt</code> com resumo da funcionalidade implementada e com instruções para colocar o programa a funcionar como esperado.  
-    Por exemplo:
+Por exemplo:
 
 *   A funcionalidade pedida foi total/parcialmente implementada **...**
-*   O servidor deve executar com o comando: <code>mvn package exec:java</code>
-*   O cliente deve executar com o comando: <code>mvn compile exec:java</code>
+*   Para compilar: <code>mvn compile</code>
+*   O servidor deve executar com o seguinte comando: <code>./target/appassembler/bin/ttt-rmi-server</code>
+*   O cliente deve executar com o comando: <code>./target/appassembler/bin/ttt-rmi-client localhost</code>
 
+### Ajuda adicional
 
+*   Revisitar [Ferramentas](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/02-tools/index.html) (Java, Maven, Eclipse)
 
-## Aprender mais!
+## Como seria um projecto Java RMI na realidade?
 
-Vai valer a pena regressar a esta aula mais tarde e aprender mais.
+O projecto desenvolvido ao longo das alíneas seguintes inclui algumas simplificações importantes que normalmente não se observam num projecto real de Java RMI. Entre elas:
 
-### Ficheiros de configuração
-
-*   [Exemplo de aplicação Java com configuração ![ZIP](../_img/zip.png)](java-app_config.zip) - utiliza ficheiro com propriedades de configuração, algumas delas preenchidas dinamicamente pelo Maven
-
-### Bibliotecas como módulos Maven
-
-*   [Exemplo de biblioteca Java ![ZIP](../_img/zip.png)](java-lib.zip) - uma biblioteca permite agrupar um conjunto de classes comuns, que podem ser usadas por outros programas. O comando <code>mvn install</code> disponibiliza o módulo no repositório local. O módulo instalado pode depois ser usado como dependência através das coordenadas (_groupId_, _artifactId_, e _version_).
-
-### JUnit + JMockit
-
-*   [Introdução ao JUnit](junit/index.html)
-*   [Introdução ao JMockit](jmockit/index.html)
-
-*   [Exemplo de aplicação Java com testes JUnit] - utiliza o Maven para compilar e testar: <code>mvn test</code>
-*   [Exemplo de aplicação Java com testes JMockit] - utiliza o Maven para compilar e testar, com objectos simulados.
+1.  Existe apenas uma instância de objecto remoto.  
+Normalmente pode existir um número variado de interfaces e classes remotas, assim como de suas instâncias.
+2.  Há um processo que aloja o objecto remoto e outro processo que obtém referência remota para essa objecto, numa clara distinção entre servidor e cliente.  
+Na prática, um processo pode simultaneamente ser servidor de alguns objectos remotos e ter outras referências remotas (para objectos remotos noutros processos), sobre as qual invoca métodos (agindo também como cliente).
+3.  No projecto acima nunca ocorre nenhuma situação de carregamento dinâmico de classes.  
+Essa situação poderia, por exemplo, acontecer se um método remoto recebesse ou retornasse um objecto por valor. Nesse caso seria necessário definir alguns aspectos de segurança da JVM (em particular, um Security Manager e uma Security Policy).
+4.  O RMIRegistry é lançado internamente pelo servidor na mesma JVM ( <code>LocateRegistry.createRegistry()</code>). O RMI Registry é normalmente um serviço autónomo que corre numa máquina virtual Java (JVM) separada do processo que instancia e solitica o registo de um objecto remoto. Neste caso, é necessário que os ficheiros com as interfaces remotas dos objectos a registar no Registry estejam disponíveis num URL definido no parâmetro "codebase" da JVM do processo servidor.  
+Um exemplo de uma aplicação que usa RMI Registry como serviço autónomo pode ser consultado aqui:  
+[servidor![ZIP](http://disciplinas.tecnico.ulisboa.pt/~leic-sod.daemon/2015-2016/labs/_img/zip.png)](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/04-rmi/hello-rmi-server.zip), [cliente![ZIP](http://disciplinas.tecnico.ulisboa.pt/~leic-sod.daemon/2015-2016/labs/_img/zip.png)](http://disciplinas.tecnico.ulisboa.pt/leic-sod/2015-2016/labs/04-rmi/hello-rmi-client.zip).
 
 * * *
 
-© Docentes de Sistemas Distribuídos, [Dep. Eng. Informática](http://www.dei.tecnico.ulisboa.pt/), [Técnico Lisboa](http://www.ist.eu)  
-Última actualização em 22 de fevereiro de 2016 por Miguel Pardal
+![IST-LOGO](https://camo.githubusercontent.com/8eb8ec735b6ac78c6495caa84c7ea6c02a5ca966/687474703a2f2f6f7765656b2e7465636e69636f2e756c6973626f612e70742f6173736574732f696d672f706172746e65722d6973742e706e67)
+
+© Sistemas Distribuídos 2016, [Dep. Eng. Informática](http://www.dei.tecnico.ulisboa.pt/), [Técnico Lisboa](http://www.ist.eu)  

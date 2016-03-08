@@ -9,10 +9,12 @@ public class Game {
     Scanner keyboardSc;
     int winner = 0;
     int player = 1;
+    public static final int port = 8090;
+    public static final String object = "ttt-galo";
 
-    public Game() {
+    public Game(String url) {
         try{
-            ttt = (TTTService) Naming.lookup("//localhost:8090/ttt-galo");
+            ttt = (TTTService) Naming.lookup(url);
             keyboardSc = new Scanner(System.in);
         }catch (RemoteException e){
             System.out.println(e.getMessage());
@@ -54,8 +56,10 @@ public class Game {
 
         } catch (RemoteException e) {
             System.out.println(e.getMessage());
+            System.exit(-1);
         } catch (Exception e){
             System.out.println(e.getMessage());
+            System.exit(-1);
         }
     }
 
@@ -69,7 +73,23 @@ public class Game {
     }
 
     public static void main(String[] args) {
-        Game g = new Game();
+        // Check arguments
+        if (args.length < 1) {
+            System.err.println("Argument(s) missing!");
+            System.err.printf("Usage: java %s host file%n", Game.class.getName());
+            return;
+        }
+
+        String host = args[0];
+
+        // Url string builder
+        String url ="//"+host+":8090"+"/"+object;
+
+        Game g = new Game(url);
+
+
+
+
         g.playGame();
         g.congratulate();
     }

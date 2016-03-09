@@ -1,0 +1,27 @@
+(0) Resumo das funcionalidades implementadas:
+
+- A funcionalidade pedida foi totalmente implementada;
+
+- Foi criada a interface TTTService onde são declarados os métodos invocáveis remotamente (métodos currentBoard, play, checkWinner e randomPlay). A interface herda de Remote e cada um dos métodos lança a excepção RemoteException;
+
+Em relação ao Servidor:
+
+- Foi adicionada a interface anterior ao programa Servidor;
+
+- Foi alterada a classe TTT passando a chamar-se TTTServant e a herdar de UnicastRemoteObject (classe Servant). Esta contém a lógica do jogo, implementa a interface definida anteriormente, tendo portanto, a implementação dos respectivos 4 métodos;
+
+- Foi adicionada a classe Main. Esta é a classe que contém o método main e é onde criamos e registamos um objecto remoto (através de uma chamada ao método rebind);
+
+Em relação ao Cliente:
+
+- A classe Game que antes se encontrava no servidor, foi transferida para o cliente. As anteriores chamadas locais aos 4 métodos (play, currentBoard, checkWinner e randomPlay) são agora chamadas remotas a um Servidor. Usámos o método lookup da classe java.rmi.Naming para encontrar o objecto remoto e enviámos como argumento deste método um url que contém o respectivo endereço, o porto de ligação e o nome do objecto (que atribuímos no servidor).
+
+
+Para compilar o server e o cliente executar:
+	mvn compile
+
+Para testar a aplicacao, lançar o server com o comando:
+	mvn exec:java
+
+E de seguida lancar o cliente com o comando:
+	mvn exec:java

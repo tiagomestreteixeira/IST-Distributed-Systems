@@ -1,0 +1,9 @@
+4.
+    i) No caso do RMI, são criados proxys (stubs do RMI) do lado do cliente e do lado do servidor, gerados automaticamente pelo compilador de interfaces. Estes são responsveis por fazer a conversão do formato da maquina para o formato de rede.
+
+    ii) servidor:   Main.java
+                    TTTService.java
+                    TTTServant.java
+
+        cliente:    Game.java
+                    TTTService.java

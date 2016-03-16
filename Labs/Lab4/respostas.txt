@@ -1,0 +1,12 @@
+1. Sim, os 3 metodos java checkWinner, play e currentBoard são mapeaveis para o WSDL, na parte de portType. A cada um dos metodos, na parte de message, estão associadas duas mensagens, uma de input, outra de output.
+
+2. É especificado na parte types, que por sua vez, referencia um XSD que contem a especificação dos tipos.
+
+3.
+	a. A declaração de tipos e declaração de funções.
+	b. O WSDL especifica o tipo de comunicação, o porto e a localização do serviço.
+
+4.	Os ficheiros Play.java, CheckWinner.java, CurrentBoard.java servem para encapsular os argumentos necessários para a execução desses métodos.
+ 	Os ficheiros ...Response.java são ficheiros responsaveis por encapsular o retorno dos metodos.
+	TTT.java é a interface que o WebService implementa.
+	TTTImplService.java é o stub.

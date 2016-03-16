@@ -1,0 +1,10 @@
+- A funcionalidade pedida foi totalmente implementada;
+
+Para compilar o server e o cliente executar:
+	mvn package
+
+Para testar a aplicacao antes deve ser lançado um servidor UDDI e de seguida lançar o server com o comando:
+	mvn exec:java
+
+E de seguida lancar o cliente com o comando:
+	mvn exec:java
